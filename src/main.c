@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:11:00 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 14:09:25 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 15:59:23 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,44 @@ int	input_check(int argc, char **argv)
 	return (0);
 }
 
+// void	*observe_thread(void *arg)
+// {
+// 	t_philo	*philo;
+
+// 	philo = (t_philo *)arg;
+// 	while (1)
+// 	{
+// 		pthread_mutex_lock(philo->dead_lock);
+// 		if (philo->dead == 1)
+// 		{
+// 			pthread_mutex_unlock(philo->dead_lock);
+// 			return (NULL);
+// 		}
+// 		pthread_mutex_unlock(philo->dead_lock);
+// 		pthread_mutex_lock(philo->meal_lock);
+// 		if (philo->meals_eaten == philo->meals_to_eat)
+// 		{
+// 			pthread_mutex_unlock(philo->meal_lock);
+// 			return (NULL);
+// 		}
+// 		pthread_mutex_unlock(philo->meal_lock);
+// 	}
+// }
+
+
+
+
+
+
+
+
 int	main(int argc, char **argv)
 {
-	
+	t_monitor		monitor;
+	t_philo			philos[MAX_PHILOSOPHERS];
+	pthread_mutex_t	forks[MAX_PHILOSOPHERS];
+
 	if (input_check(argc, argv))
 		return (1);
-	
+	init(argv, philos, &monitor, forks);
 }

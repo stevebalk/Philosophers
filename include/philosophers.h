@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 13:40:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 14:36:54 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,35 @@
 
 # define MAX_PHILOSOPHERS 200
 
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*write_lock;
+	pthread_mutex_t	*dead_lock;
+	pthread_mutex_t	*meal_lock;
+	int				num_of_philos;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	int				meals_to_eat;
+	int				eating;
+	int				meals_eaten;
+	size_t			last_meal;
+	size_t			start_time;
+	int				*dead;
+}					t_philo;
 
+typedef struct s_monitor
+{
+	int				dead_flag;
+	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	meal_lock;
+	pthread_mutex_t	write_lock;
+	t_philo			*philos;
+}					t_monitor;
 
 
 /********************************************************************/
