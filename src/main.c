@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:11:00 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 15:59:23 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 16:43:33 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,6 @@ int	input_check(int argc, char **argv)
 // }
 
 
-
-
-
-
-
-
 int	main(int argc, char **argv)
 {
 	t_monitor		monitor;
@@ -72,4 +66,7 @@ int	main(int argc, char **argv)
 	if (input_check(argc, argv))
 		return (1);
 	init(argv, philos, &monitor, forks);
+	start_threads(&monitor, forks);
+	destroy_all(&monitor, forks, NULL);
+	return (EXIT_SUCCESS);
 }

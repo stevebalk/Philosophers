@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 14:36:54 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 16:43:04 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,39 @@ typedef struct s_monitor
 
 
 /********************************************************************/
+/*                          INIT                                    */
+/********************************************************************/
+
+void	init(char **argv, t_philo *philos, t_monitor *monitor
+		, pthread_mutex_t *forks);
+
+/********************************************************************/
+/*                          THREADS                                 */
+/********************************************************************/
+
+int	start_threads(t_monitor *monitor, pthread_mutex_t *forks);
+
+/********************************************************************/
+/*                          PHILO_ROUTINE                           */
+/********************************************************************/
+
+void	*philo_routine(void *pointer);
+
+/********************************************************************/
+/*                          Monitoring                              */
+/********************************************************************/
+
+void	*monitor_threads(void *pointer);
+
+/********************************************************************/
 /*                          UTILS                                   */
 /********************************************************************/
+
+// Philo
+void	print_philo_status(t_philo *philo, int id, char *msg);
+int		is_philo_dead(t_philo *philo);
+int		has_a_philo_died(t_philo *philo);
+int		did_all_ate(t_philo *philos);
 
 // TIME
 size_t	get_current_time(void);
@@ -67,4 +98,6 @@ int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 int		ft_is_str_num(char *str);
 
+// Free
+void	destroy_all(t_monitor *monitor, pthread_mutex_t *forks, char *str);
 #endif

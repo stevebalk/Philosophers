@@ -6,13 +6,13 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:54:17 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 15:54:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 16:29:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_input(char **argv, t_philo *philos)
+static void	init_input(char **argv, t_philo *philos)
 {
 	philos->num_of_philos = ft_atoi(argv[1]);
 	philos->time_to_die = ft_atoi(argv[2]);
@@ -24,7 +24,7 @@ void	init_input(char **argv, t_philo *philos)
 		philos->meals_to_eat = -1;
 }
 
-void	init_monitoring(t_monitor *monitor, t_philo *philos)
+static void	init_monitoring(t_monitor *monitor, t_philo *philos)
 {
 	monitor->dead_flag = 0;
 	monitor->philos = philos;
@@ -33,7 +33,7 @@ void	init_monitoring(t_monitor *monitor, t_philo *philos)
 	pthread_mutex_init(&monitor->write_lock, NULL);
 }
 
-void	init_forks(pthread_mutex_t *forks, int num_of_philos)
+static void	init_forks(pthread_mutex_t *forks, int num_of_philos)
 {
 	int	i;
 
@@ -45,7 +45,7 @@ void	init_forks(pthread_mutex_t *forks, int num_of_philos)
 	}
 }
 
-void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *forks)
+static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *forks)
 {
 	int	i;
 

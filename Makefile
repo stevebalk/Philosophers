@@ -6,7 +6,7 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 11:26:00 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/09 13:43:02 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/09 16:39:02 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,13 @@ CYAN = \033[0;96m
 WHITE = \033[0;97m
 
 SRC_FILES	=	main \
+				init \
+				monitoring \
+				routines \
 				string_utils \
+				threads \
 				time_utils \
+				utils
 
 
 SRC 		= 	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
