@@ -6,14 +6,18 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:11:00 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 13:42:36 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/09 14:09:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	check_args(char **argv)
+// Check if argment count and arguments are valid
+// returns 1 if invalid, 0 if valid
+int	input_check(int argc, char **argv)
 {
+	if (argc < 5 || argc > 6)
+		return (ft_putstr_fd("Error: wrong number of arguments\n", 2), 1);
 	if (ft_atoi(argv[1]) > MAX_PHILOSOPHERS || ft_atoi(argv[1]) <= 0 ||
 		ft_is_str_num(argv[1]) == 0)
 		return (ft_putstr_fd("Error: Philosophers: Invalid number\n", 2), 1);
@@ -30,11 +34,8 @@ int	check_args(char **argv)
 
 int	main(int argc, char **argv)
 {
-	if (argc < 5 || argc > 6)
-	{
-		ft_putstr_fd("Error: wrong number of arguments\n", 2);
+	
+	if (input_check(argc, argv))
 		return (1);
-	}
-	if (check_args(argv))
-		return (1);
+	
 }
