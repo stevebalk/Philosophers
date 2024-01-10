@@ -6,13 +6,17 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:11:00 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 15:16:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:27:30 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 // Checks if wrong user input
+// Between 4 and 5 arguments
+// Arguments are numbers
+// Arguments are positive
+// Number of philosophers is not greater than MAX_PHILOSOPHERS
 int	is_wrong_input(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)

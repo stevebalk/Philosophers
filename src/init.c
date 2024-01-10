@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:54:17 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 15:16:08 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:30:19 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ static void	init_input(char **argv, t_philo *philos)
 	}
 }
 
+// Initializes the monitor struct
+// Initializes shared mutexes
 static void	init_monitoring(t_monitor *monitor, t_philo *philos)
 {
 	monitor->dead_flag = 0;
@@ -42,6 +44,7 @@ static void	init_monitoring(t_monitor *monitor, t_philo *philos)
 	pthread_mutex_init(&monitor->write_lock, NULL);
 }
 
+// Initializes forks
 static void	init_forks(pthread_mutex_t *forks, int num_of_philos)
 {
 	int	i;
@@ -54,6 +57,7 @@ static void	init_forks(pthread_mutex_t *forks, int num_of_philos)
 	}
 }
 
+// Initializes philos
 static void	init_philos(t_philo *philos, t_monitor *monitor,
 			pthread_mutex_t *forks)
 {

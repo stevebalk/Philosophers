@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:53:16 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 13:00:48 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:52:20 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Starts the threads
 // Monitor thread is created first, then the philo threads
-// The philo threads are joined first, then the monitor thread
+// The monitor thread is joined first, then the philo threads
 
 int	start_threads(t_monitor *monitor, pthread_mutex_t *forks)
 {
