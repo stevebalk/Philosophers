@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 15:15:02 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:22:25 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-# define MAX_PHILOSOPHERS	200
+# define MAX_PHILOSOPHERS	300
 # define START_DELAY		1
 
 typedef struct s_philo
