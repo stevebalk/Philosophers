@@ -6,14 +6,14 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:51:12 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 16:41:50 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 13:43:06 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 // Check if a philosopher is dead/dead flag set
-static int	is_dead_flag_set(t_philo *philo)
+int	is_dead_flag_set(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
 	if (*philo->dead == 1)
@@ -25,17 +25,23 @@ static int	is_dead_flag_set(t_philo *philo)
 	return (0);
 }
 
+// Print is thinking status
 static void	thinking(t_philo *philo)
 {
 	print_philo_status(philo, philo->id, "is thinking");
 }
 
+// Sleep for x ms and print status
 static void	sleeping(t_philo *philo)
 {
 	print_philo_status(philo, philo->id, "is sleeping");
 	ft_usleep(philo->time_to_sleep);
 }
 
+// First take neighbours fork (right)
+// Then take own fork (left)
+// Then eat for x ms
+// Then release forks
 static void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(philo->r_fork);
@@ -60,11 +66,15 @@ static void	eating(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 }
 
+// Philosopher routine, delays philo by START_DELAY ms if
+// id is an even number to avoid deadlock
 void	*philo_routine(void *pointer)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)pointer;
+	if (philo->id % 2 == 0)
+		ft_usleep(START_DELAY);
 	while (!is_dead_flag_set(philo))
 	{
 			eating(philo);

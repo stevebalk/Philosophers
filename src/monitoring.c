@@ -6,17 +6,19 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:50:33 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 16:41:29 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 14:28:55 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
+// Prints current time since start, philo id and a message
 void	print_philo_status(t_philo *philo, int id, char *msg)
 {
 	pthread_mutex_lock(philo->write_lock);
-	printf("%zu %d %s\n", get_current_time() - philo->start_time
-		, id, msg);
+	if (!is_dead_flag_set(philo))
+		printf("%zu %d %s\n", get_current_time() - philo->start_time ,
+			id, msg);
 	pthread_mutex_unlock(philo->write_lock);
 }
 
@@ -37,7 +39,7 @@ int	has_a_philo_died(t_philo *philo)
 	int	i;
 
 	i = 0;
-	while (i < philo->num_of_philos)
+	while (i < philo[0].num_of_philos)
 	{
 		if (is_philo_dead(&philo[i]))
 		{
@@ -63,7 +65,7 @@ int	did_all_ate(t_philo *philos)
 	while (i < philos->num_of_philos)
 	{
 		pthread_mutex_lock(philos[i].meal_lock);
-		if (philos[i].meals_eaten != philos[i].meals_to_eat)
+		if (philos[i].meals_eaten < philos[i].meals_to_eat)
 		{
 			pthread_mutex_unlock(philos[i].meal_lock);
 			return (0);
@@ -71,10 +73,13 @@ int	did_all_ate(t_philo *philos)
 		pthread_mutex_unlock(philos[i].meal_lock);
 		i++;
 	}
+	pthread_mutex_lock(philos[0].dead_lock);
 	*philos->dead = 1;
+	pthread_mutex_unlock(philos[0].dead_lock);
 	return (1);
 }
 
+// Monitors philos to see if one has died or if all have eaten
 void	*monitor_threads(void *pointer)
 {
 	t_philo	*philos;
