@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:54:17 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 16:29:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 14:13:09 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,23 @@
 
 static void	init_input(char **argv, t_philo *philos)
 {
-	philos->num_of_philos = ft_atoi(argv[1]);
-	philos->time_to_die = ft_atoi(argv[2]);
-	philos->time_to_eat = ft_atoi(argv[3]);
-	philos->time_to_sleep = ft_atoi(argv[4]);
-	if (argv[5])
-		philos->meals_to_eat = ft_atoi(argv[5]);
-	else
-		philos->meals_to_eat = -1;
+	int	i;
+	int	num_of_philos;
+
+	i = 0;
+	num_of_philos = ft_atoi(argv[1]);
+	while (i < num_of_philos)
+	{
+		philos[i].num_of_philos = ft_atoi(argv[1]);
+		philos[i].time_to_die = ft_atoi(argv[2]);
+		philos[i].time_to_eat = ft_atoi(argv[3]);
+		philos[i].time_to_sleep = ft_atoi(argv[4]);
+		if (argv[5])
+			philos[i].meals_to_eat = ft_atoi(argv[5]);
+		else
+			philos[i].meals_to_eat = -1;
+		i++;
+	}
 }
 
 static void	init_monitoring(t_monitor *monitor, t_philo *philos)
@@ -53,8 +62,6 @@ static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *fo
 	while (i < philos->num_of_philos)
 	{
 		philos[i].id = i + 1;
-		philos[i].r_fork = &forks[i];
-		philos[i].l_fork = &forks[(i + 1) % philos->num_of_philos];
 		philos[i].write_lock = &monitor->write_lock;
 		philos[i].dead_lock = &monitor->dead_lock;
 		philos[i].meal_lock = &monitor->meal_lock;
@@ -63,6 +70,9 @@ static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *fo
 		philos[i].last_meal = get_current_time();
 		philos[i].start_time = get_current_time();
 		philos[i].dead = &monitor->dead_flag;
+		philos[i].l_fork = &forks[i];
+		philos[i].r_fork = &forks[(i + 1) % philos->num_of_philos];
+		// printf("time to sleep: %zu\n", philos[i].time_to_sleep);
 		i++;
 	}
 }
@@ -70,8 +80,8 @@ static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *fo
 void	init(char **argv, t_philo *philos, t_monitor *monitor
 		, pthread_mutex_t *forks)
 {
-	init_input(argv, philos);
 	init_monitoring(monitor, philos);
+	init_forks(forks, ft_atoi(argv[1]));
+	init_input(argv, philos);
 	init_philos(philos, monitor, forks);
-	init_forks(forks, philos->num_of_philos);
 }
