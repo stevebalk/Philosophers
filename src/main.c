@@ -6,15 +6,14 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:11:00 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 16:43:33 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 13:04:50 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-// Check if argment count and arguments are valid
-// returns 1 if invalid, 0 if valid
-int	input_check(int argc, char **argv)
+// Checks if wrong user input
+int	is_wrong_input(int argc, char **argv)
 {
 	if (argc < 5 || argc > 6)
 		return (ft_putstr_fd("Error: wrong number of arguments\n", 2), 1);
@@ -32,38 +31,13 @@ int	input_check(int argc, char **argv)
 	return (0);
 }
 
-// void	*observe_thread(void *arg)
-// {
-// 	t_philo	*philo;
-
-// 	philo = (t_philo *)arg;
-// 	while (1)
-// 	{
-// 		pthread_mutex_lock(philo->dead_lock);
-// 		if (philo->dead == 1)
-// 		{
-// 			pthread_mutex_unlock(philo->dead_lock);
-// 			return (NULL);
-// 		}
-// 		pthread_mutex_unlock(philo->dead_lock);
-// 		pthread_mutex_lock(philo->meal_lock);
-// 		if (philo->meals_eaten == philo->meals_to_eat)
-// 		{
-// 			pthread_mutex_unlock(philo->meal_lock);
-// 			return (NULL);
-// 		}
-// 		pthread_mutex_unlock(philo->meal_lock);
-// 	}
-// }
-
-
 int	main(int argc, char **argv)
 {
 	t_monitor		monitor;
 	t_philo			philos[MAX_PHILOSOPHERS];
 	pthread_mutex_t	forks[MAX_PHILOSOPHERS];
 
-	if (input_check(argc, argv))
+	if (is_wrong_input(argc, argv))
 		return (1);
 	init(argv, philos, &monitor, forks);
 	start_threads(&monitor, forks);
