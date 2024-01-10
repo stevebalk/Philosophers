@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 14:11:04 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 14:26:44 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	*monitor_threads(void *pointer);
 
 // Philo
 void	print_philo_status(t_philo *philo, int id, char *msg);
-int		is_philo_dead(t_philo *philo, size_t time_to_die);
+int		is_philo_dead(t_philo *philo);
 int		has_a_philo_died(t_philo *philo);
 int		did_all_ate(t_philo *philos);
 
