@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 14:26:44 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:15:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,12 @@ typedef struct s_monitor
 	t_philo			*philos;
 }					t_monitor;
 
-
 /********************************************************************/
 /*                          INIT                                    */
 /********************************************************************/
 
-void	init(char **argv, t_philo *philos, t_monitor *monitor
-		, pthread_mutex_t *forks);
+void	init(char **argv, t_philo *philos, t_monitor *monitor,
+			pthread_mutex_t *forks);
 
 /********************************************************************/
 /*                          THREADS                                 */

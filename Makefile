@@ -6,13 +6,13 @@
 #    By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/23 11:26:00 by sbalk             #+#    #+#              #
-#    Updated: 2024/01/09 16:39:02 by sbalk            ###   ########.fr        #
+#    Updated: 2024/01/10 15:14:31 by sbalk            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philosophers
 CC			= gcc
-CFLAGS		= -Werror -Wall -Wextra -pthread -g
+CFLAGS		= -Werror -Wall -Wextra -pthread
 RM			= rm -f
 SRC_DIR		= src/
 OBJ_DIR		= obj/

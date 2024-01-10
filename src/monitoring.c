@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:50:33 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 14:28:55 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:18:10 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_philo_status(t_philo *philo, int id, char *msg)
 {
 	pthread_mutex_lock(philo->write_lock);
 	if (!is_dead_flag_set(philo))
-		printf("%zu %d %s\n", get_current_time() - philo->start_time ,
+		printf("%zu %d %s\n", get_current_time() - philo->start_time,
 			id, msg);
 	pthread_mutex_unlock(philo->write_lock);
 }
@@ -31,7 +31,6 @@ int	is_philo_dead(t_philo *philo)
 		return (pthread_mutex_unlock(philo->meal_lock), 1);
 	return (pthread_mutex_unlock(philo->meal_lock), 0);
 }
-
 
 // Checks every philo to see if one has died
 int	has_a_philo_died(t_philo *philo)

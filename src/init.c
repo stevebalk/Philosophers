@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:54:17 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 14:13:09 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:16:08 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ static void	init_forks(pthread_mutex_t *forks, int num_of_philos)
 	}
 }
 
-static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *forks)
+static void	init_philos(t_philo *philos, t_monitor *monitor,
+			pthread_mutex_t *forks)
 {
 	int	i;
 
@@ -72,7 +73,6 @@ static void	init_philos(t_philo *philos, t_monitor *monitor ,pthread_mutex_t *fo
 		philos[i].dead = &monitor->dead_flag;
 		philos[i].l_fork = &forks[i];
 		philos[i].r_fork = &forks[(i + 1) % philos->num_of_philos];
-		// printf("time to sleep: %zu\n", philos[i].time_to_sleep);
 		i++;
 	}
 }

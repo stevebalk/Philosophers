@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 15:51:12 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/10 13:43:06 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 15:17:02 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	*philo_routine(void *pointer)
 		ft_usleep(START_DELAY);
 	while (!is_dead_flag_set(philo))
 	{
-			eating(philo);
-			sleeping(philo);
-			thinking(philo);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
 	}
 	return (pointer);
 }
