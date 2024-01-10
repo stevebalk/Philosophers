@@ -6,7 +6,7 @@
 /*   By: sbalk <sbalk@student.fr>                   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 12:12:54 by sbalk             #+#    #+#             */
-/*   Updated: 2024/01/09 16:43:04 by sbalk            ###   ########.fr       */
+/*   Updated: 2024/01/10 14:11:04 by sbalk            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-# define MAX_PHILOSOPHERS 200
+# define MAX_PHILOSOPHERS	200
+# define START_DELAY		1
 
 typedef struct s_philo
 {
@@ -63,13 +64,14 @@ void	init(char **argv, t_philo *philos, t_monitor *monitor
 /*                          THREADS                                 */
 /********************************************************************/
 
-int	start_threads(t_monitor *monitor, pthread_mutex_t *forks);
+int		start_threads(t_monitor *monitor, pthread_mutex_t *forks);
 
 /********************************************************************/
 /*                          PHILO_ROUTINE                           */
 /********************************************************************/
 
 void	*philo_routine(void *pointer);
+int		is_dead_flag_set(t_philo *philo);
 
 /********************************************************************/
 /*                          Monitoring                              */
@@ -83,7 +85,7 @@ void	*monitor_threads(void *pointer);
 
 // Philo
 void	print_philo_status(t_philo *philo, int id, char *msg);
-int		is_philo_dead(t_philo *philo);
+int		is_philo_dead(t_philo *philo, size_t time_to_die);
 int		has_a_philo_died(t_philo *philo);
 int		did_all_ate(t_philo *philos);
 
